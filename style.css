@@ -48,6 +48,7 @@ h1 {
   transform: translateY(-50%); }
 
 #timedebug {
+  display: none;
   position: absolute;
   left: 20px;
   bottom: 40px; }

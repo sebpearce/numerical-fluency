@@ -271,7 +271,7 @@ function handleClick(radiobutton) {
   problemList = [];
   counter = 0;
   var i = 0;
-  while (i++ < 500) {
+  while (i++ < 1000) {
     problemList.push(loadNewProblem(mode)); // returns an obj with problem & answer
   }
 
@@ -296,7 +296,7 @@ $(document).ready(function(){
 
   // push 100 new problems onto problemList
   var i = 0;
-  while (i++ < 500) {
+  while (i++ < 1000) {
     problemList.push(loadNewProblem()); // returns an obj with problem & answer
   }
 
@@ -319,7 +319,7 @@ $(document).ready(function(){
   timerInterval = setInterval(function(){
 
     secondsElapsed = parseInt((Date.now() - startTime) / 1000);
-    $( '#timedebug' ).text(secondsElapsed);
+    // $( '#timedebug' ).text(secondsElapsed);
 
   }, 1000);
 
