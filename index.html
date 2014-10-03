@@ -1,0 +1,63 @@
+<!DOCTYPE html>  
+
+<html lang="en">  
+
+<head>
+
+  <link rel="shortcut icon" href="favicon.ico" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="reset.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <title>Numerical Fluency</title>  
+
+</head>  
+
+<body>
+
+  <div class="page-wrapper">
+
+    <div id="title-wrapper">
+      <h1>Numerical Fluency</h1>
+    </div>
+
+    <span id="timedebug">123</span>
+    <span id="timedebug2-label">Rate:</span><span id="timedebug2">123</span>
+
+
+    <div id="options-container">
+      <input type="radio" name="options" id="radio-add" value="add" onclick="handleClick(this);"><label for="radio-add">+</label><br>
+      <input type="radio" name="options" id="radio-sub" value="subtract" onclick="handleClick(this);"><label for="radio-sub">&minus;</label><br>
+      <input type="radio" name="options" id="radio-mul" value="multiply" onclick="handleClick(this);"><label for="radio-mul">&#215;</label><br>
+      <input type="radio" name="options" id="radio-per" value="percent" onclick="handleClick(this);"><label for="radio-per">%</label><br>
+      <input type="radio" name="options" id="radio-all" value="all" checked="checked" onclick="handleClick(this);"><label for="radio-all">all </label>
+    </div>
+
+      <span id="question-next-fade-in"></span>
+      <span id="question-next-4">85 + 17</span>
+      <span id="question-next-3">17 – 11</span>
+      <span id="question-next-2">4 + 79</span>
+      <span id="question-next-1">23 / 17</span>
+      <span id="question">Question</span>
+      <span id="correct">Correct!</span>
+      <span id="incorrect">Try again.</span>
+      <!-- <span id="lastproblem">adsf</span> -->
+      <span id="score-label">Score:</span><span id="score">0</span>
+      <span id="lastproblem-label">Last:</span><span id="lastproblem"></span>
+
+      <input id="answer" type="text">
+
+    <footer><a href="http://sebpearce.com">sebpearce.com</a></footer>
+
+  </div>
+
+  <script src="jquery-1.11.1.min.js"></script>
+  <script src="jquery-ui.min.js"></script>
+  <script src="base.js"></script>
+  <script src="main.js"></script>
+
+</body>
+
+</html>                   
