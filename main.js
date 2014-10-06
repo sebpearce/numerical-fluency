@@ -323,6 +323,9 @@ $(document).ready(function(){
 
   }, 1000);
 
+  incorrectMsg.innerHTML = 'Try again.';
+  correctMsg.innerHTML = 'Correct!';
+
 
 });
 
