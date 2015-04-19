@@ -32,10 +32,10 @@ var incorrectMsg = document.getElementById('incorrect');
 var correctMsg = document.getElementById('correct');
 var scoreDisplay = document.getElementById('score');
 
-var CPM = 0;
-var timerInterval;
-var secondsElapsed;
-var startTime = 0;
+// var CPM = 0;
+// var timerInterval;
+// var secondsElapsed;
+// var startTime = 0;
 
 function precise_round(num,decimals) {
     return Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals);
@@ -143,8 +143,8 @@ answerInput.addEventListener('keypress', function(e) {
         lastProblem.innerHTML = problemList[counter].problem + ' = ' + 
           problemList[counter].answer;
         // update correct per minute
-        CPM = score / (secondsElapsed / 60);
-        $( '#timedebug2' ).text(CPM.toFixed(1) + ' per minute');
+        // CPM = score / (secondsElapsed / 60);
+        // $( '#timedebug2' ).text(CPM.toFixed(1) + ' per minute');
         // show correct
         $( '#correct' ).css({opacity: '1'});
         $( '#correct' ).animate({
@@ -216,7 +216,7 @@ answerInput.addEventListener('keypress', function(e) {
         $( '#question-next-3' ).text(problemList[counter+3].problem);
         $( '#question-next-4' ).text(problemList[counter+4].problem);
         // console.log(problemList[counter].problem + "; " + problemList[counter].answer)
-        console.log('counter: ' + counter);
+        // console.log('counter: ' + counter);
         answerInput.value = '';
         answerInput.focus();
         // reset incorrectMsg opacity and turn on display in background
@@ -314,14 +314,14 @@ $(document).ready(function(){
   $( '#question-next-4' ).text(problemList[counter+4].problem);
   answerInput.focus();
 
-  startTime = Date.now();
+  // startTime = Date.now();
 
-  timerInterval = setInterval(function(){
+  // timerInterval = setInterval(function(){
 
-    secondsElapsed = parseInt((Date.now() - startTime) / 1000);
-    // $( '#timedebug' ).text(secondsElapsed);
+  //   secondsElapsed = parseInt((Date.now() - startTime) / 1000);
+  //   // $( '#timedebug' ).text(secondsElapsed);
 
-  }, 1000);
+  // }, 1000);
 
   incorrectMsg.innerHTML = 'Try again.';
   correctMsg.innerHTML = 'Correct!';
