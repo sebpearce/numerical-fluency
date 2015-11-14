@@ -40,29 +40,25 @@ Level 5 - 3 digits & 3 digits
 
   var operators = ['+','–','*','%'];
 
-  var a, b, o, mode, submode;
-
+  var a, b, o, mode;
   var problem = '';
   var answer = 0;
   var score = 0;
-
   var submode = '2';
   var addmode = '2';
   var mulmode = '2';
   var permode = '2';
-
   var counter = 0;
-
-  var problemList = new Array();
-
+  var problemList = [];
   var messageScores = [10, 25, 50, 100];
-
   var animationSpeed = 800;
   var easingType = 'easeOutQuad';
   var hasAnswered = false;
 
   function loadNewProblem(mode) {
 
+    var power;
+    
     switch (mode) {
       case '+':
         o = 0;
@@ -83,28 +79,28 @@ Level 5 - 3 digits & 3 digits
 
     switch (o) {
       case 0:
-        var power = Math.pow(10,addmode-2);
+        power = Math.pow(10,addmode-2);
         a = randomInt(88*power) + 11*power;
         b = randomInt(88*power) + 11*power;
         answer = a + b;
         problem = a + ' + ' + b;
         break;
       case 1:
-        var power = Math.pow(10,submode-2);
+        power = Math.pow(10,submode-2);
         a = randomInt(80*power) + 19*power;
         b = randomInt(a-(12*power)) + 11*power;
         answer = a - b;
         problem = a + ' – ' + b;
         break;
       case 2:
-        var power = Math.pow(10,mulmode-2);
+        power = Math.pow(10,mulmode-2);
         a = randomInt(88*power) + 11*power;
         b = randomInt(7*power) + 2*power;
         answer = a * b;
         problem = a + ' \u00D7 ' + b;
         break;
       case 3:
-        var power = Math.pow(10,permode-2);
+        power = Math.pow(10,permode-2);
         a = (randomInt(18)+1) * 5;
         b = (randomInt(8) * 10)*power + 10*power;
         answer = precise_round(b * (a/100),2);
@@ -287,7 +283,7 @@ Level 5 - 3 digits & 3 digits
     $( '#question-next-4' ).text(problemList[counter+4].problem);
     answerInput.focus();
 
-  };
+  }
 
   $(document).ready(function(){
 
@@ -317,4 +313,3 @@ Level 5 - 3 digits & 3 digits
   });
 
 })();
-
