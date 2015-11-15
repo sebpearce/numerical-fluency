@@ -38,8 +38,6 @@ Level 5 - 3 digits & 3 digits
       return Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals);
   }
 
-  var operators = ['+','–','*','%'];
-
   var a, b, o, mode;
   var problem = '';
   var answer = 0;
