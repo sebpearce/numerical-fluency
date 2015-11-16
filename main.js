@@ -34,10 +34,6 @@ Level 5 - 3 digits & 3 digits
   var correctMsg = document.getElementById('correct');
   var scoreDisplay = document.getElementById('score');
 
-  function precise_round(num,decimals) {
-      return Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals);
-  }
-
   var a, b, o, mode;
   var problem = '';
   var answer = 0;
@@ -52,6 +48,10 @@ Level 5 - 3 digits & 3 digits
   var animationSpeed = 800;
   var easingType = 'easeOutQuad';
   var hasAnswered = false;
+
+  function precise_round(num,decimals) {
+      return Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals);
+  }
 
   function loadNewProblem(mode) {
 
@@ -113,10 +113,7 @@ Level 5 - 3 digits & 3 digits
 
   }
 
-  // refillProblemList () {}
-
   answerInput.addEventListener('keypress', function(e) {
-
     if (e.keyCode == 13) {
 
       // if we haven't just had an answer AND
@@ -230,12 +227,10 @@ Level 5 - 3 digits & 3 digits
       e.preventDefault();
       answerInput.value = problemList[counter].answer;
     }
-
   });
 
 
   function handleClick(radiobutton) {
-
     switch (radiobutton.value) {
       case 'add':
         mode = '+';
@@ -284,30 +279,25 @@ Level 5 - 3 digits & 3 digits
   }
 
   $(document).ready(function(){
-
     // push 100 new problems onto problemList
     var i = 0;
     while (i++ < 1000) {
       problemList.push(loadNewProblem()); // returns an obj with problem & answer
     }
-
     messageScores.forEach(function(item) {
       if (item > score) {
         problemList[item - score].problem = item + ' POINTS!';
         problemList[item - score].answer = 'x';
       }
     });
-
     $( '#question' ).text(problemList[counter].problem);
     $( '#question-next-1' ).text(problemList[counter+1].problem);
     $( '#question-next-2' ).text(problemList[counter+2].problem);
     $( '#question-next-3' ).text(problemList[counter+3].problem);
     $( '#question-next-4' ).text(problemList[counter+4].problem);
     answerInput.focus();
-
     incorrectMsg.innerHTML = 'Try again.';
     correctMsg.innerHTML = 'Correct!';
-
   });
 
 })();
