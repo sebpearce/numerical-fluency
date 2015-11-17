@@ -27,13 +27,6 @@ Level 5 - 3 digits & 3 digits
 
 (function numericalFluency(){
 
-  var answerInput = document.getElementById('answer');
-  var questionInput = document.getElementById('question');
-  var lastProblem = document.getElementById('lastproblem');
-  var incorrectMsg = document.getElementById('incorrect');
-  var correctMsg = document.getElementById('correct');
-  var scoreDisplay = document.getElementById('score');
-
   var a, b, o, mode;
   var problem = '';
   var answer = 0;
@@ -113,13 +106,62 @@ Level 5 - 3 digits & 3 digits
 
   }
 
-  answerInput.addEventListener('keypress', function(e) {
+  function handleClick() {
+    switch ($(this).val()) {
+      case 'add':
+        mode = '+';
+        break;
+      case 'subtract':
+        mode = '–';
+        break;
+      case 'multiply':
+        mode = '*';
+        break;
+      case 'percent':
+        mode = '%';
+        break;
+      case 'all':
+        mode = '';
+        break;
+      default:
+        break;
+    }
+
+    $( '#incorrect' ).css({opacity: '0'}).show();
+
+    // push 100 new problems onto problemList
+    problemList = [];
+    counter = 0;
+    var i = 0;
+    while (i++ < 1000) {
+      problemList.push(loadNewProblem(mode)); // returns an obj with problem & answer
+    }
+
+    messageScores.forEach(function(item) {
+      if (item > score) {
+        problemList[item - score].problem = item + ' POINTS!';
+        problemList[item - score].answer = 'x';
+      }
+    });
+
+    // $( '#question' ).text(loadNewProblem(mode).problem);
+    $( '#question' ).text(problemList[counter].problem);
+    $( '#question-next-1' ).text(problemList[counter+1].problem);
+    $( '#question-next-2' ).text(problemList[counter+2].problem);
+    $( '#question-next-3' ).text(problemList[counter+3].problem);
+    $( '#question-next-4' ).text(problemList[counter+4].problem);
+    $('#answer').focus();
+
+  }
+  
+
+  $('#answer').keypress(function(e) {
     if (e.keyCode == 13) {
 
       // if we haven't just had an answer AND
       if (!hasAnswered && 
          // the user's answer was correct OR
-         (answerInput.value == problemList[counter].answer ||
+         ($('#answer').val() == problemList[counter].answer ||
          // it's a points message
           problemList[counter].answer == 'x')) {
 
@@ -128,8 +170,8 @@ Level 5 - 3 digits & 3 digits
         // 'x' means a points message, so don't increment the score
         if (problemList[counter].answer != 'x') {
           score++;
-          lastProblem.innerHTML = problemList[counter].problem + ' = ' + 
-            problemList[counter].answer;
+          $( '#lastproblem' ).text(problemList[counter].problem + ' = ' + 
+            problemList[counter].answer);
           // update correct per minute
           // CPM = score / (secondsElapsed / 60);
           // $( '#timedebug2' ).text(CPM.toFixed(1) + ' per minute');
@@ -143,9 +185,9 @@ Level 5 - 3 digits & 3 digits
           }, animationSpeed, easingType);
 
         } else {
-          lastProblem.innerHTML = problemList[counter].problem;
+          $( '#lastproblem' ).text(problemList[counter].problem);
         }
-        scoreDisplay.innerHTML = score;   
+        $( '#score' ).text(score);   
 
         $( '#incorrect' ).hide();
 
@@ -205,8 +247,8 @@ Level 5 - 3 digits & 3 digits
           $( '#question-next-4' ).text(problemList[counter+4].problem);
           // console.log(problemList[counter].problem + "; " + problemList[counter].answer)
           // console.log('counter: ' + counter);
-          answerInput.value = '';
-          answerInput.focus();
+          $('#answer').val('');
+          $('#answer').focus();
           // reset incorrectMsg opacity and turn on display in background
           $( '#incorrect' ).css({opacity: '0'}).show();
 
@@ -217,66 +259,23 @@ Level 5 - 3 digits & 3 digits
       } else {
         $( '#incorrect' ).css({opacity: '1'});
         $( '#answer' ).effect( 'shake', function(){
-          answerInput.value = '';
-          answerInput.focus();
+          $('#answer').val('');
+          $('#answer').focus();
         });
       }
 
     // cheat code!!!
     } else if (e.keyCode == 104) { // h
       e.preventDefault();
-      answerInput.value = problemList[counter].answer;
+      $('#answer').val(problemList[counter].answer);
     }
   });
 
-
-  function handleClick(radiobutton) {
-    switch (radiobutton.value) {
-      case 'add':
-        mode = '+';
-        break;
-      case 'subtract':
-        mode = '–';
-        break;
-      case 'multiply':
-        mode = '*';
-        break;
-      case 'percent':
-        mode = '%';
-        break;
-      case 'all':
-        mode = '';
-        break;
-      default:
-        break;
-    }
-
-    $( '#incorrect' ).css({opacity: '0'}).show();
-
-    // push 100 new problems onto problemList
-    problemList = [];
-    counter = 0;
-    var i = 0;
-    while (i++ < 1000) {
-      problemList.push(loadNewProblem(mode)); // returns an obj with problem & answer
-    }
-
-    messageScores.forEach(function(item) {
-      if (item > score) {
-        problemList[item - score].problem = item + ' POINTS!';
-        problemList[item - score].answer = 'x';
-      }
-    });
-
-    // $( '#question' ).text(loadNewProblem(mode).problem);
-    $( '#question' ).text(problemList[counter].problem);
-    $( '#question-next-1' ).text(problemList[counter+1].problem);
-    $( '#question-next-2' ).text(problemList[counter+2].problem);
-    $( '#question-next-3' ).text(problemList[counter+3].problem);
-    $( '#question-next-4' ).text(problemList[counter+4].problem);
-    answerInput.focus();
-
-  }
+  $('#radio-add').on('click', handleClick);
+  $('#radio-sub').on('click', handleClick);
+  $('#radio-mul').on('click', handleClick);
+  $('#radio-per').on('click', handleClick);
+  $('#radio-all').on('click', handleClick);
 
   $(document).ready(function(){
     // push 100 new problems onto problemList
@@ -295,9 +294,9 @@ Level 5 - 3 digits & 3 digits
     $( '#question-next-2' ).text(problemList[counter+2].problem);
     $( '#question-next-3' ).text(problemList[counter+3].problem);
     $( '#question-next-4' ).text(problemList[counter+4].problem);
-    answerInput.focus();
-    incorrectMsg.innerHTML = 'Try again.';
-    correctMsg.innerHTML = 'Correct!';
+    $('#answer').focus();
+    $( '#incorrect' ).text('Try again.');
+    $( '#correct' ).text('Correct!');
   });
 
 })();
